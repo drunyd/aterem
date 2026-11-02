@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "isSample": true,
+    "title": "Minta órarend",
+    "note": "Az itt látható időpontok illusztrációk a megjelenés bemutatásához. A végleges órarend feltöltése folyamatban.",
+    "defaultMonth": "2026-11"
+  },
+  "events": [
+    { "id": "e01", "classTypeId": "koredzes", "date": "2026-11-02", "start": "17:00", "end": "18:00", "demo": true },
+    { "id": "e02", "classTypeId": "nyujtas", "date": "2026-11-02", "start": "19:00", "end": "20:00", "demo": true },
+    { "id": "e03", "classTypeId": "gerinctorna", "date": "2026-11-03", "start": "09:00", "end": "10:00", "demo": true },
+    { "id": "e04", "classTypeId": "trx", "date": "2026-11-03", "start": "17:30", "end": "18:30", "demo": true },
+    { "id": "e05", "classTypeId": "has-far-comb", "date": "2026-11-04", "start": "17:00", "end": "18:00", "demo": true },
+    { "id": "e06", "classTypeId": "koredzes-nyujtas", "date": "2026-11-05", "start": "17:00", "end": "18:00", "demo": true },
+    { "id": "e07", "classTypeId": "trambulin", "date": "2026-11-05", "start": "18:30", "end": "19:30", "demo": true },
+    { "id": "e08", "classTypeId": "koredzes", "date": "2026-11-07", "start": "09:00", "end": "10:00", "demo": true },
+    { "id": "e09", "classTypeId": "koredzes", "date": "2026-11-09", "start": "17:00", "end": "18:00", "demo": true },
+    { "id": "e10", "classTypeId": "gerinctorna", "date": "2026-11-10", "start": "09:00", "end": "10:00", "demo": true },
+    { "id": "e11", "classTypeId": "has-far-comb", "date": "2026-11-10", "start": "17:00", "end": "18:00", "demo": true },
+    { "id": "e12", "classTypeId": "trx", "date": "2026-11-11", "start": "17:30", "end": "18:30", "demo": true },
+    { "id": "e13", "classTypeId": "koredzes-nyujtas", "date": "2026-11-12", "start": "17:00", "end": "18:00", "demo": true },
+    { "id": "e14", "classTypeId": "trambulin", "date": "2026-11-14", "start": "09:00", "end": "10:00", "demo": true },
+    { "id": "e15", "classTypeId": "koredzes", "date": "2026-11-23", "start": "17:00", "end": "18:00", "demo": true },
+    { "id": "e16", "classTypeId": "gerinctorna", "date": "2026-11-24", "start": "09:00", "end": "10:00", "demo": true },
+    { "id": "e17", "classTypeId": "nyujtas", "date": "2026-11-25", "start": "18:00", "end": "19:00", "demo": true },
+    { "id": "e18", "classTypeId": "koredzes-nyujtas", "date": "2026-11-26", "start": "17:00", "end": "18:00", "demo": true },
+    { "id": "e19", "classTypeId": "has-far-comb", "date": "2026-11-28", "start": "09:00", "end": "10:00", "demo": true }
+  ],
+  "uncertain": [
+    { "week": "2026. november 16–22.", "time": "17:00–18:00", "note": "A forrásban szereplő időpont, de az órához rendelés bizonytalan." },
+    { "week": "2026. november 16–22.", "time": "19:30–20:30", "note": "A forrásban szereplő időpont, de az órához rendelés bizonytalan." }
+  ]
+}
