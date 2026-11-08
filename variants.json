@@ -20,6 +20,13 @@
       "description": "Sötét téma, külön oldalak (nem egyoldalas), finom mozgás és megújult, áttekinthetőbb naptár.",
       "path": "variants/v2-dark/",
       "status": "aktív"
+    },
+    {
+      "id": "v2-5-registered",
+      "name": "Változat 2.5 — sötét — regisztrált felhasználó",
+      "description": "Bejelentkezett ügyfélfelület sötét témában, képekkel: dashboard banner, foglalás, bérlet, vásárlások, profil, értesítések.",
+      "path": "variants/v2-5-registered/",
+      "status": "aktív"
     }
   ]
 }
