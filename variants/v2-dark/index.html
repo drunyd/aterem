@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>aTerem — Kezdőlap</title>
+  <meta name="description" content="Csoportos edzések, jó hangulat és egy támogató közösség Székesfehérváron.">
+  <meta name="theme-color" content="#100D0B">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23F97316'/%3E%3Ctext x='50' y='66' font-size='44' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'%3EaT%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">aTerem<span>.</span></a>
+      <nav class="nav" id="nav" aria-label="Fő navigáció">
+        <a href="index.html" aria-current="page">Kezdőlap</a>
+        <a href="oraend.html">Órarend</a>
+        <a href="oratipusok.html">Óratípusok</a>
+        <a href="rolunk.html">Rólunk</a>
+        <a href="kapcsolat.html">Kapcsolat</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Menü" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <p class="eyebrow">Csoportos edzések Székesfehérváron</p>
+        <h1 class="hero-title">Mozdulj velünk!</h1>
+        <p class="hero-sub">Csoportos edzések, jó hangulat és egy támogató közösség Székesfehérváron.</p>
+        <div class="hero-actions">
+          <a href="oraend.html" class="btn btn-primary">Megnézem az órarendet</a>
+          <a href="oratipusok.html" class="btn btn-ghost">Ismerd meg az óráinkat</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Órarend</p>
+        <h2 class="section-title" data-reveal>Közelgő edzések</h2>
+        <div class="upcoming-grid" id="upcomingList" aria-live="polite"></div>
+        <p class="muted-note" id="upcomingNote" hidden>Az órarend jelenleg minta-adatokat tartalmaz — a végleges időpontok feltöltése folyamatban.</p>
+        <a href="oraend.html" class="btn btn-outline" data-reveal>A teljes órarend &rarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="index.html">aTerem<span>.</span></a>
+      <nav class="nav-footer" aria-label="Lábléc navigáció">
+        <a href="index.html">Kezdőlap</a>
+        <a href="oraend.html">Órarend</a>
+        <a href="oratipusok.html">Óratípusok</a>
+        <a href="rolunk.html">Rólunk</a>
+        <a href="kapcsolat.html">Kapcsolat</a>
+      </nav>
+      <div class="social">
+        <a href="https://www.facebook.com/ateremtavirda/" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+        <a href="https://www.instagram.com/ateremszekesfehervar/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+      </div>
+      <p class="copyright">&copy; <span id="year"></span> aTerem</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" data-close aria-label="Bezárás">&times;</button>
+      <div class="modal-media" id="modalMedia" role="img" aria-label="Óra illusztráció"></div>
+      <div class="modal-body">
+        <p class="eyebrow" id="modalEyebrow"></p>
+        <h3 class="modal-title" id="modalTitle"></h3>
+        <p class="modal-meta" id="modalMeta"></p>
+        <p class="modal-desc" id="modalDesc"></p>
+        <a class="btn btn-primary" id="modalCta" href="mailto:info@a-terem.hu">Érdeklődöm</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

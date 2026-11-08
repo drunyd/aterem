@@ -1,0 +1,60 @@
+{
+  "classTypes": [
+    {
+      "id": "gerinctorna",
+      "name": "Gerinctorna",
+      "tagline": "Mozgás a hátadnak",
+      "description": "Kíméletes, gerinckímélő torna, amely a tartásjavítást, a törzsizmok erősítését és az ízületek átmozgatását helyezi a középpontba. Lassú, tudatos tempó, minden korosztály számára.",
+      "color": "#2A9D8F",
+      "image": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=70&auto=format&fit=crop"
+    },
+    {
+      "id": "has-far-comb",
+      "name": "Has-Far-Comb",
+      "tagline": "Törzserősítés céltudatosan",
+      "description": "A has- és farizmokra fókuszáló, kombinált törzserősítő edzés. Saját testsúllyal és egyszerű eszközökkel dolgoztatja meg a központi izmokat.",
+      "color": "#E76F51",
+      "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=70&auto=format&fit=crop"
+    },
+    {
+      "id": "koredzes",
+      "name": "Köredzés",
+      "tagline": "Teljes test, lendületes tempó",
+      "description": "Állomásokból felépülő, változatos köredzés, amely az egész testet átmozgatja. Erő és állóképesség egy órában, mindenki a saját tempójában halad.",
+      "color": "#E9A23B",
+      "image": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=70&auto=format&fit=crop"
+    },
+    {
+      "id": "koredzes-nyujtas",
+      "name": "Köredzés + nyújtás",
+      "tagline": "Erősítés és lazítás egyben",
+      "description": "Köredzéses erősítő blokk, kiegészítve egy alapos nyújtással. A lendületes munka után a test fokozatos levezetése és átnyújtása.",
+      "color": "#457B9D",
+      "image": "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=70&auto=format&fit=crop"
+    },
+    {
+      "id": "nyujtas",
+      "name": "Nyújtás",
+      "tagline": "Mozgékonyság és felfrissülés",
+      "description": "Nyugodt tempójú stretching óra a hajlékonyság és a mozgástartomány megőrzéséért. Kellemes levezetés edzés után, vagy önálló, relaxáló mozgás.",
+      "color": "#8E7CC3",
+      "image": "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?w=800&q=70&auto=format&fit=crop"
+    },
+    {
+      "id": "trambulin",
+      "name": "Trambulin",
+      "tagline": "Pattanj bele a mozgásba",
+      "description": "Lendületes, szórakoztató ugrálós edzés trambulinon. Kíméli az ízületeket, miközben az egész testet megdolgoztatja — jókedvű kardió.",
+      "color": "#E63946",
+      "image": "https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=800&q=70&auto=format&fit=crop"
+    },
+    {
+      "id": "trx",
+      "name": "TRX",
+      "tagline": "Saját testsúlyos erősítés",
+      "description": "Felfüggesztett hevederekkel végzett funkcionális erősítés. A saját testsúly és a hevederek együttesen fejlesztik az erőt és a törzs stabilitását.",
+      "color": "#2B9348",
+      "image": "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=70&auto=format&fit=crop"
+    }
+  ]
+}

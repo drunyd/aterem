@@ -6,6 +6,13 @@
       "description": "Az alap megjelenés: órarend naptárral, közelgő edzések, óratípus-kártyák, rólunk és kapcsolat szekció.",
       "path": "variants/v1-alap/",
       "status": "aktív"
+    },
+    {
+      "id": "v2-dark",
+      "name": "Változat 2 — sötét",
+      "description": "Sötét téma, külön oldalak (nem egyoldalas), finom mozgás és megújult, áttekinthetőbb naptár.",
+      "path": "variants/v2-dark/",
+      "status": "aktív"
     }
   ]
 }
