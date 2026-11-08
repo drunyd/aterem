@@ -1,0 +1,11 @@
+{
+  "variants": [
+    {
+      "id": "v1-alap",
+      "name": "Változat 1 — alap",
+      "description": "Az alap megjelenés: órarend naptárral, közelgő edzések, óratípus-kártyák, rólunk és kapcsolat szekció.",
+      "path": "variants/v1-alap/",
+      "status": "aktív"
+    }
+  ]
+}
