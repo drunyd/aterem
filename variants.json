@@ -8,6 +8,13 @@
       "status": "aktív"
     },
     {
+      "id": "v1-5-registered",
+      "name": "Változat 1.5 — alap — regisztrált felhasználó",
+      "description": "Bejelentkezett ügyfélfelület demoadatokkal: dashboard, foglalás, lemondás, bérlet, vásárlások, profil, értesítések.",
+      "path": "variants/v1-5-registered/",
+      "status": "aktív"
+    },
+    {
       "id": "v2-dark",
       "name": "Változat 2 — sötét",
       "description": "Sötét téma, külön oldalak (nem egyoldalas), finom mozgás és megújult, áttekinthetőbb naptár.",
