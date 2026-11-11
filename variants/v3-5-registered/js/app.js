@@ -525,10 +525,10 @@
     var mine = isBooked(ev.id);
     var action;
     if (mine) {
-      action = '<span class="chip chip-green" style="margin-bottom:6px">Már lefoglaltad</span>' +
+      action = '<span class="chip chip-green" style="margin-bottom:8px">Már lefoglaltad</span>' +
         '<button class="btn btn-outline btn-block" data-close>Bezárás</button>';
     } else if (free <= 0) {
-      action = '<span class="chip chip-red" style="margin-bottom:6px">Betelt — nincs szabad hely</span>' +
+      action = '<span class="chip chip-red" style="margin-bottom:8px">Betelt — nincs szabad hely</span>' +
         '<button class="btn btn-outline btn-block" data-close>Bezárás</button>';
     } else {
       action = '<p class="spots">Szabad helyek: <b>' + free + "</b></p>" +
@@ -536,7 +536,7 @@
     }
 
     openModalHTML(
-      '<div class="class-card-media" style="background-image:url(&quot;' + ct.image + '&quot;);background-color:' + ct.color + ';height:160px;border-radius:12px;margin-bottom:16px"></div>' +
+      '<div class="class-card-media" style="background-image:url(&quot;' + ct.image + '&quot;);background-color:' + ct.color + ';height:176px;border-radius:16px;margin-bottom:16px"></div>' +
       '<p class="eyebrow">' + esc(ct.name) + "</p>" +
       '<h3 class="modal-title">' + esc(ct.name) + "</h3>" +
       '<p class="confirm-text">' + esc(fmtDayLong(ev.date)) + " · " + esc(ev.start) + "–" + esc(ev.end) + "</p>" +
@@ -597,7 +597,7 @@
   function renderUpcomingHeroes(container, list) {
     if (!container) return;
     if (!list.length) {
-      container.innerHTML = '<div class="card"><p style="margin:0 0 14px;color:#8B7F71">Nincs közelgő foglalásod.</p>' +
+      container.innerHTML = '<div class="card"><p style="margin:0 0 16px;color:#8B7F71">Nincs közelgő foglalásod.</p>' +
         '<a class="btn btn-primary btn-sm" href="oraend.html">Mutasd az órarendet</a></div>';
       return;
     }
@@ -766,7 +766,7 @@
           fieldFull("Számlázási név", "billingName", u.billingName) +
           fieldFull("Számlázási cím", "billingAddress", u.billingAddress) +
         "</div>" +
-        '<div style="margin-top:16px"><button class="btn btn-primary" id="saveProfile">Mentés</button></div>';
+        '<div style="margin-top:24px"><button class="btn btn-primary" id="saveProfile">Mentés</button></div>';
       $("#saveProfile").addEventListener("click", function () {
         ["lastName", "firstName", "email", "phone", "billingName", "billingAddress"].forEach(function (k) {
           var inp = $("#f_" + k); if (inp) state.user[k] = inp.value;
@@ -786,7 +786,7 @@
           fieldFull("Új jelszó", "pw2", "", "password") +
           fieldFull("Új jelszó ismét", "pw3", "", "password") +
         "</div>" +
-        '<div style="margin-top:16px"><button class="btn btn-primary" id="savePassword">Jelszó módosítása</button></div>';
+        '<div style="margin-top:24px"><button class="btn btn-primary" id="savePassword">Jelszó módosítása</button></div>';
       $("#savePassword").addEventListener("click", function () {
         toast("Demó: a jelszóváltoztatás itt nem történik meg.");
       });

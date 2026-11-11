@@ -1,17 +1,37 @@
 /* ==========================================================================
    aTerem — V3.5 client area (dark) — FINE TUNED FOCUS HIERARCHY
    Alapelv: minden oldalon EGY dolog van fókuszban. Minden más visszafogott.
+
+   SPACING: minden hézag 8px-es skálán van.
+     4px  — fél lépés, csak szorosan összetartozó elemekre (pl. cím + alcím)
+     8px  — azonos csoporton belüli elemek
+     16px — csoporton belüli nagyobb elemek / kártya belső hézag
+     24px — kártya belső padding, csoportok között
+     32px — szekciók között
+     40px — nagy szekciók / hero belső
+     48px — hero külső, nagy blokkok
+     64px — oldal-teteji/alji ritmus
    ========================================================================== */
 
 :root {
   --focus-ring: 0 0 0 1px rgba(249, 115, 22, .32), 0 18px 48px rgba(0, 0, 0, .5);
-  --subdue: .58;               /* visszafogott elemek átlátszósága */
+  --subdue: .58;
+
+  /* 8px-es skála */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 16px;
+  --s-4: 24px;
+  --s-5: 32px;
+  --s-6: 40px;
+  --s-7: 48px;
+  --s-8: 64px;
 }
 
 /* ---- App header (visszafogott) ---------------------------------------- */
-.header-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.header-actions { display: flex; align-items: center; gap: var(--s-2); margin-left: auto; }
 
-.user-chip { display: flex; align-items: center; gap: 8px; opacity: .8; }
+.user-chip { display: flex; align-items: center; gap: var(--s-2); opacity: .8; }
 .avatar {
   width: 32px; height: 32px; border-radius: 50%;
   background: var(--surface-2); color: var(--brand-2);
@@ -23,14 +43,14 @@
 
 .bell {
   position: relative; background: none; border: 0; cursor: pointer;
-  width: 38px; height: 38px; border-radius: 50%;
+  width: 40px; height: 40px; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
   color: var(--muted); transition: background .15s ease, color .15s ease;
 }
 .bell:hover { background: var(--surface-2); color: var(--ink); }
 .bell svg { width: 19px; height: 19px; }
 .bell .badge {
-  position: absolute; top: 1px; right: 0;
+  position: absolute; top: 0; right: 0;
   min-width: 16px; height: 16px; padding: 0 4px;
   background: #E63946; color: #fff;
   border-radius: 999px; font-size: 10px; font-weight: 700;
@@ -38,23 +58,23 @@
 }
 
 .notif-panel {
-  position: absolute; top: 63px; right: 12px;
-  width: min(360px, calc(100vw - 24px));
+  position: absolute; top: 64px; right: 8px;
+  width: min(360px, calc(100vw - 16px));
   background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--radius); box-shadow: var(--shadow-md);
   z-index: 60; overflow: hidden;
 }
-.notif-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.notif-head { display: flex; align-items: center; justify-content: space-between; padding: var(--s-3); border-bottom: 1px solid var(--line); }
 .notif-head strong { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
 .notif-head button { background: none; border: 0; color: var(--brand-2); cursor: pointer; font-size: 12.5px; font-weight: 600; }
 .notif-list { max-height: 320px; overflow-y: auto; }
-.notif-item { display: flex; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); cursor: pointer; font-size: 14px; }
+.notif-item { display: flex; gap: var(--s-2); padding: var(--s-2) var(--s-3); border-bottom: 1px solid var(--line); cursor: pointer; font-size: 14px; }
 .notif-item:last-child { border-bottom: 0; }
 .notif-item.unread { background: var(--brand-soft); }
-.notif-item .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--brand); margin-top: 7px; flex-shrink: 0; }
+.notif-item .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); margin-top: 8px; flex-shrink: 0; }
 .notif-item.read .dot { background: var(--line); }
 .notif-item .t { flex: 1; }
-.notif-item .d { color: var(--muted); font-size: 11.5px; }
+.notif-item .d { color: var(--muted); font-size: 11.5px; display: block; margin-top: var(--s-1); }
 
 /* ---- Bottom nav -------------------------------------------------------- */
 .bottom-nav {
@@ -63,12 +83,12 @@
   backdrop-filter: blur(12px);
   border-top: 1px solid var(--line);
   grid-template-columns: repeat(5, 1fr);
-  padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+  padding: var(--s-1) 4px calc(var(--s-1) + env(safe-area-inset-bottom));
 }
 .bottom-nav a {
-  display: flex; flex-direction: column; align-items: center; gap: 3px;
-  padding: 7px 2px; text-decoration: none; color: #6F6356;
-  font-size: 10.5px; font-weight: 600; border-radius: 10px;
+  display: flex; flex-direction: column; align-items: center; gap: var(--s-1);
+  padding: var(--s-2) 0; text-decoration: none; color: #6F6356;
+  font-size: 10.5px; font-weight: 600; border-radius: 8px;
   transition: color .15s ease;
 }
 .bottom-nav a svg { width: 21px; height: 21px; }
@@ -77,37 +97,26 @@
 
 /* ==========================================================================
    FÓKUSZ RENDSZER
-   .focus-card     — az oldal fő eleme: nagy, világos, keretezett, kiemelt
-   .sub-card       — másodlagos: visszafogott, kisebb
-   .quiet          — tovább tompított
    ========================================================================== */
 
-.page { padding: 34px 0 96px; }
+.page { padding: var(--s-5) 0 96px; }
 
 /* Oldalcím — visszafogott, hogy a tartalom beszéljen */
-.page-title { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #6F6356; margin: 0 0 22px; }
+.page-title { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #6F6356; margin: 0 0 var(--s-3); }
 
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
-
-/* ---- FŐKÁRTYA ---------------------------------------------------------- */
-.focus-card {
-  background: linear-gradient(165deg, #241E17 0%, #1B1713 100%);
-  border: 1px solid rgba(249, 115, 22, .34);
-  border-radius: 22px;
-  box-shadow: var(--focus-ring);
-  overflow: hidden;
-}
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-3) var(--s-4); }
 
 /* ==========================================================================
    1) DASHBOARD — fókusz: MI A KÖVETKEZŐ
    ========================================================================== */
 
-.dash-intro { margin-bottom: 20px; }
+/* Bevezető — egy csoport: üdvözlés */
+.dash-intro { margin-bottom: var(--s-3); }
 .dash-name { font-size: 15px; color: var(--muted); margin: 0; font-weight: 600; }
 .dash-name b { color: var(--ink); }
 
 /* HERO: következő edzés */
-.next-hero { position: relative; border-radius: 22px; overflow: hidden; margin-bottom: 22px; box-shadow: var(--focus-ring); border: 1px solid rgba(249, 115, 22, .34); }
+.next-hero { position: relative; border-radius: 24px; overflow: hidden; margin-bottom: var(--s-4); box-shadow: var(--focus-ring); border: 1px solid rgba(249, 115, 22, .34); }
 .next-hero-media {
   position: absolute; inset: 0;
   background-size: cover; background-position: center;
@@ -117,56 +126,58 @@
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(100deg, rgba(16, 13, 11, .95) 8%, rgba(16, 13, 11, .78) 46%, rgba(16, 13, 11, .28) 100%);
 }
-.next-hero-body { position: relative; z-index: 2; padding: 34px 32px; }
+.next-hero-body { position: relative; z-index: 2; padding: var(--s-5) var(--s-4); }
+
+/* Csoport: kicker → cím → mikor → óra (szoros), majd műveletek (távolabb) */
 .next-kicker {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex; align-items: center; gap: var(--s-2);
   text-transform: uppercase; letter-spacing: .16em; font-size: 11px; font-weight: 800;
-  color: var(--brand-2); margin: 0 0 14px;
+  color: var(--brand-2); margin: 0 0 var(--s-2);
 }
-.next-kicker::before { content: ""; width: 22px; height: 2px; background: var(--brand); border-radius: 2px; }
-.next-title { font-size: clamp(30px, 5vw, 44px); font-weight: 800; letter-spacing: -.03em; color: #fff; margin: 0 0 10px; line-height: 1.05; }
-.next-when { font-size: clamp(16px, 2.2vw, 20px); color: #E4D8CA; margin: 0 0 6px; font-weight: 600; }
-.next-clock { font-size: 15px; color: var(--brand-2); font-weight: 700; margin: 0 0 18px; letter-spacing: .02em; }
-.next-hero-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.next-kicker::before { content: ""; width: 24px; height: 2px; background: var(--brand); border-radius: 2px; }
+.next-title { font-size: clamp(30px, 5vw, 44px); font-weight: 800; letter-spacing: -.03em; color: #fff; margin: 0 0 var(--s-2); line-height: 1.05; }
+.next-when { font-size: clamp(16px, 2.2vw, 20px); color: #E4D8CA; margin: 0; font-weight: 600; }
+.next-clock { font-size: 15px; color: var(--brand-2); font-weight: 700; margin: var(--s-1) 0 0; letter-spacing: .02em; }
+.next-hero-actions { display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-4); }
 
 /* Ha nincs foglalás */
-.next-hero.is-empty .next-hero-body { padding: 46px 32px; }
-.next-hero.is-empty .next-title { font-size: clamp(24px, 3.6vw, 32px); }
+.next-hero.is-empty .next-hero-body { padding: var(--s-6) var(--s-4); }
+.next-hero.is-empty .next-title { font-size: clamp(24px, 3.6vw, 32px); margin-bottom: 0; }
 
 /* Másodlagos oszlop */
-.dash-side { display: flex; flex-direction: column; gap: 14px; }
+.dash-side { display: flex; flex-direction: column; gap: var(--s-2); }
 
 /* Bérlet — visszafogott mini */
-.mini-pass { padding: 18px; }
-.mini-pass .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: #6F6356; font-weight: 700; margin: 0 0 6px; }
+.mini-pass { padding: var(--s-3); }
+.mini-pass .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: #6F6356; font-weight: 700; margin: 0 0 var(--s-2); }
 .mini-pass .val { font-size: 26px; font-weight: 800; color: var(--ink); margin: 0; line-height: 1; }
 .mini-pass .val small { font-size: 13px; font-weight: 600; color: var(--muted); }
-.mini-pass .progress { height: 5px; margin: 12px 0 6px; }
+.mini-pass .progress { height: 5px; margin: var(--s-3) 0 var(--s-1); }
 .mini-pass .progress-labels { font-size: 11.5px; }
-.mini-pass .link-quiet { display: inline-block; margin-top: 10px; font-size: 12.5px; color: #8B7F71; text-decoration: none; font-weight: 600; }
+.mini-pass .link-quiet { display: inline-block; margin-top: var(--s-3); font-size: 12.5px; color: #8B7F71; text-decoration: none; font-weight: 600; }
 .mini-pass .link-quiet:hover { color: var(--brand-2); }
 
 /* Heti foglalások — visszafogott sorok */
 .week-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.week-item { display: flex; align-items: baseline; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(44, 38, 32, .6); font-size: 14px; }
+.week-item { display: flex; align-items: baseline; gap: var(--s-2); padding: var(--s-2) 0; border-bottom: 1px solid rgba(44, 38, 32, .6); font-size: 14px; }
 .week-item:last-child { border-bottom: 0; }
-.week-item .wd { color: #6F6356; font-size: 12px; min-width: 78px; font-weight: 600; }
+.week-item .wd { color: #6F6356; font-size: 12px; min-width: 80px; font-weight: 600; }
 .week-item .wn { flex: 1; color: #C9BFB2; }
 .week-item .wt { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
 
 /* Gyors műveletek — tompított */
-.quiet-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.quiet-actions { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 .quiet-actions a {
   font-size: 13px; font-weight: 600; text-decoration: none;
   color: #9C9184; border: 1px solid var(--line);
-  padding: 8px 14px; border-radius: 999px;
+  padding: var(--s-2) var(--s-3); border-radius: 999px;
   transition: color .15s ease, border-color .15s ease;
 }
 .quiet-actions a:hover { color: var(--brand-2); border-color: rgba(249, 115, 22, .4); }
 
-/* Szekciócímek — visszafogott */
-.quiet-title { font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: #6F6356; font-weight: 800; margin: 0 0 12px; }
-.quiet-block { margin-top: 26px; }
+/* Szekciócímek — visszafogott; a cím és a tartalom egy csoport */
+.quiet-title { font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: #6F6356; font-weight: 800; margin: 0 0 var(--s-2); }
+.quiet-block { margin-top: var(--s-5); }
 
 /* ==========================================================================
    2) ÓRAREND — fókusz: NAPTÁR, azon belül AZ ÓRÁK
@@ -174,36 +185,36 @@
 
 .cal-focus { box-shadow: var(--focus-ring); border-color: rgba(249, 115, 22, .28); }
 
-/* A naptár fejléc-visszafogás */
-.cal-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
-.calendar-controls { display: flex; align-items: center; gap: 8px; }
+/* Eszköztár: hónap + navigáció egy sor */
+.cal-toolbar { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; margin-bottom: var(--s-3); }
+.calendar-controls { display: flex; align-items: center; gap: var(--s-2); }
 .month-label { font-size: 20px; font-weight: 800; letter-spacing: -.01em; text-transform: capitalize; min-width: 0; text-align: left; margin: 0; }
-.cal-toolbar .btn-icon { width: 36px; height: 36px; font-size: 19px; opacity: .7; }
+.cal-toolbar .btn-icon { width: 40px; height: 40px; font-size: 19px; opacity: .7; }
 .cal-toolbar .btn-icon:hover { opacity: 1; }
 .cal-toolbar .btn-outline { opacity: .75; }
 
 /* Szűrők — tompított */
-.filter-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-.filter-row .chip { font-size: 11.5px; font-weight: 600; padding: 5px 11px; background: transparent; border: 1px solid var(--line); color: #8B7F71; cursor: pointer; }
+.filter-row { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-bottom: var(--s-3); }
+.filter-row .chip { font-size: 11.5px; font-weight: 600; padding: var(--s-1) var(--s-2); background: transparent; border: 1px solid var(--line); color: #8B7F71; cursor: pointer; }
 .filter-row .chip:hover { color: var(--ink); border-color: #45392E; }
 .filter-row .chip.is-on { background: var(--brand-soft); border-color: rgba(249, 115, 22, .5); color: var(--brand-2); }
 
-/* Rács — világosabb, nagyobb cellák */
+/* Rács */
 .calendar-grid {
-  border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
   background: #171310;
 }
 .cal-weekday-row, .cal-week { display: grid; grid-template-columns: repeat(7, 1fr); }
 .cal-weekday {
-  padding: 10px 6px; text-align: center;
+  padding: var(--s-2) var(--s-1); text-align: center;
   font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em;
   color: #5E544A; background: transparent; border-bottom: 1px solid var(--line);
 }
 .cal-cell {
-  min-height: 128px; padding: 8px 7px;
+  min-height: 128px; padding: var(--s-1) var(--s-1);
   border-bottom: 1px solid rgba(44, 38, 32, .75);
   border-right: 1px solid rgba(44, 38, 32, .75);
-  cursor: pointer; display: flex; flex-direction: column; gap: 5px;
+  cursor: pointer; display: flex; flex-direction: column; gap: var(--s-1);
   background: transparent; transition: background .14s ease;
 }
 .cal-cell:nth-child(7n) { border-right: 0; }
@@ -213,34 +224,34 @@
 .cal-cell.is-weekend:hover { background: rgba(249, 115, 22, .05); }
 .cal-cell.is-selected { background: rgba(249, 115, 22, .1); box-shadow: inset 0 0 0 2px var(--brand); }
 .cal-cell.is-outside { background: rgba(0, 0, 0, .22); cursor: default; }
-.cal-day { font-size: 12.5px; font-weight: 700; color: #7E7264; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; }
+.cal-day { font-size: 12.5px; font-weight: 700; color: #7E7264; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; margin-bottom: var(--s-1); }
 .cal-cell.is-today .cal-day { background: var(--brand); color: #1A0F06; }
 
-/* ⭐ AZ ÓRÁK — a naptár fókuszpontja: nagy, kontrasztos chipek */
+/* ⭐ AZ ÓRÁK — a naptár fókuszpontja */
 .cal-event {
   display: block; text-decoration: none; color: #fff;
-  padding: 7px 9px; border-radius: 9px;
+  padding: var(--s-1) var(--s-2); border-radius: 8px;
   background: var(--c, var(--brand));
-  font-size: 12.5px; font-weight: 700; line-height: 1.2;
+  font-size: 12.5px; font-weight: 700; line-height: 1.25;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   transition: transform .12s ease, filter .12s ease;
   box-shadow: 0 3px 10px rgba(0, 0, 0, .35);
 }
 .cal-event:hover { transform: translateY(-1px); filter: brightness(1.12); }
 .cal-event .ev-time { display: block; font-size: 12px; font-weight: 800; opacity: .95; letter-spacing: .01em; }
-.cal-event .ev-name { display: block; font-size: 11.5px; font-weight: 600; opacity: .92; margin-top: 1px; }
+.cal-event .ev-name { display: block; font-size: 11.5px; font-weight: 600; opacity: .92; margin-top: 0; }
 .cal-event.is-booked { box-shadow: 0 0 0 2px #fff inset, 0 3px 10px rgba(0, 0, 0, .35); }
-.cal-more { font-size: 11px; color: #8B7F71; padding: 1px 4px; font-weight: 600; }
+.cal-more { font-size: 11px; color: #8B7F71; padding: 0 var(--s-1); font-weight: 600; }
 
 /* Kiválasztott nap — fókusz panel */
-.day-detail { margin-top: 18px; background: linear-gradient(165deg, #241E17, #1B1713); border: 1px solid rgba(249, 115, 22, .3); border-radius: 20px; padding: 24px; box-shadow: var(--focus-ring); }
-.day-detail-title { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: #8B7F71; font-weight: 700; margin: 0 0 16px; }
-.day-detail-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.day-detail { margin-top: var(--s-3); background: linear-gradient(165deg, #241E17, #1B1713); border: 1px solid rgba(249, 115, 22, .3); border-radius: 24px; padding: var(--s-4); box-shadow: var(--focus-ring); }
+.day-detail-title { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: #8B7F71; font-weight: 700; margin: 0 0 var(--s-3); }
+.day-detail-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--s-2); }
 
 /* Óra-sorok — nagyok, kattinthatók */
 .class-row {
-  display: flex; align-items: center; gap: 16px;
-  padding: 15px 18px; border-radius: 14px;
+  display: flex; align-items: center; gap: var(--s-3);
+  padding: var(--s-2) var(--s-3); border-radius: 16px;
   background: rgba(255, 255, 255, .04);
   border: 1px solid rgba(255, 255, 255, .07);
   cursor: pointer;
@@ -254,106 +265,106 @@
 .class-row .cr-arrow { color: #6F6356; font-size: 17px; }
 
 /* Mobil napválasztó */
-.day-selector { display: flex; gap: 7px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 8px; scrollbar-width: none; }
+.day-selector { display: flex; gap: var(--s-1); overflow-x: auto; padding-bottom: var(--s-2); margin-bottom: var(--s-2); scrollbar-width: none; }
 .day-selector::-webkit-scrollbar { display: none; }
 .day-chip {
-  flex: 0 0 auto; min-width: 52px; padding: 9px 7px;
+  flex: 0 0 auto; min-width: 56px; padding: var(--s-2) var(--s-1);
   border-radius: 12px; border: 1px solid var(--line);
   background: transparent; cursor: pointer; text-align: center; color: #8B7F71;
   font-family: inherit; transition: border-color .14s ease, color .14s ease;
 }
 .day-chip .dw { display: block; font-weight: 700; text-transform: uppercase; font-size: 10px; opacity: .8; }
-.day-chip .dn { display: block; font-size: 17px; font-weight: 800; }
+.day-chip .dn { display: block; font-size: 17px; font-weight: 800; margin-top: 0; }
 .day-chip.has-events { border-color: rgba(249, 115, 22, .35); color: var(--ink); }
 .day-chip.is-active { border-color: var(--brand); background: var(--brand-soft); color: var(--brand-2); }
-.day-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.day-list-item { border-radius: 14px; padding: 16px; cursor: pointer; background: var(--c, var(--brand)); box-shadow: 0 6px 18px rgba(0, 0, 0, .35); }
+.day-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--s-2); }
+.day-list-item { border-radius: 16px; padding: var(--s-3); cursor: pointer; background: var(--c, var(--brand)); box-shadow: 0 6px 18px rgba(0, 0, 0, .35); }
 .day-list-item .t { font-weight: 800; font-size: 17px; color: #fff; }
-.day-list-item .s { font-size: 13px; color: rgba(255, 255, 255, .82); margin-top: 2px; }
+.day-list-item .s { font-size: 13px; color: rgba(255, 255, 255, .82); margin-top: var(--s-1); }
 
 /* ==========================================================================
    3) FOGLALÁSAIM — fókusz: KÖZELGŐ FOGLALÁSOK
    ========================================================================== */
 
-.booking-hero-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 12px; }
+.booking-hero-list { display: flex; flex-direction: column; gap: var(--s-3); margin-bottom: var(--s-2); }
 
 /* Fókusz foglalás kártya */
 .res-hero {
-  display: flex; gap: 0; border-radius: 20px; overflow: hidden;
+  display: flex; gap: 0; border-radius: 24px; overflow: hidden;
   background: linear-gradient(120deg, #241E17, #1B1713);
   border: 1px solid rgba(249, 115, 22, .32);
   box-shadow: var(--focus-ring);
 }
-.res-hero-media { width: 170px; flex-shrink: 0; background-size: cover; background-position: center; }
-.res-hero-body { flex: 1; padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; }
-.res-hero .r-kicker { font-size: 10.5px; text-transform: uppercase; letter-spacing: .14em; font-weight: 800; color: var(--brand-2); margin: 0; }
-.res-hero .r-name { font-size: clamp(21px, 3vw, 27px); font-weight: 800; color: #fff; margin: 0; letter-spacing: -.02em; }
+.res-hero-media { width: 176px; flex-shrink: 0; background-size: cover; background-position: center; }
+/* Csoport: kicker → név → mikor → óra szorosan; műveletek és meta távolabb */
+.res-hero-body { flex: 1; padding: var(--s-4); display: flex; flex-direction: column; }
+.res-hero .r-kicker { font-size: 10.5px; text-transform: uppercase; letter-spacing: .14em; font-weight: 800; color: var(--brand-2); margin: 0 0 var(--s-1); }
+.res-hero .r-name { font-size: clamp(21px, 3vw, 27px); font-weight: 800; color: #fff; margin: 0 0 var(--s-1); letter-spacing: -.02em; line-height: 1.15; }
 .res-hero .r-when { font-size: 16px; color: #DDD2C4; margin: 0; font-weight: 600; }
-.res-hero .r-clock { font-size: 15px; color: var(--brand-2); font-weight: 700; margin: 0; }
-.res-hero .r-actions { display: flex; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
-.res-hero .r-booked { font-size: 11.5px; color: #6F6356; margin: 0; }
+.res-hero .r-clock { font-size: 15px; color: var(--brand-2); font-weight: 700; margin: var(--s-1) 0 0; }
+.res-hero .r-actions { display: flex; align-items: center; gap: var(--s-2); margin-top: var(--s-3); flex-wrap: wrap; }
+.res-hero .r-booked { font-size: 11.5px; color: #6F6356; margin: var(--s-2) 0 0; }
 
 /* Másodlagos listák — kompakt, halvány */
-.compact-block { margin-top: 30px; }
-.compact-block > .quiet-title { display: flex; align-items: center; gap: 8px; }
+.compact-block { margin-top: var(--s-5); }
 .compact-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.compact-item { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(44, 38, 32, .55); font-size: 14px; opacity: .72; }
+.compact-item { display: flex; align-items: center; gap: var(--s-2); padding: var(--s-2) 0; border-bottom: 1px solid rgba(44, 38, 32, .55); font-size: 14px; opacity: .72; }
 .compact-item:last-child { border-bottom: 0; }
 .compact-item:hover { opacity: .95; }
-.compact-item .c-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sub-c, #6F6356); flex-shrink: 0; }
+.compact-item .c-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sub-c, #6F6356); flex-shrink: 0; }
 .compact-item .c-info { flex: 1; }
 .compact-item .c-t { font-weight: 600; color: #B8AC9D; font-size: 13.5px; }
-.compact-item .c-s { color: #6F6356; font-size: 12px; }
+.compact-item .c-s { color: #6F6356; font-size: 12px; display: block; margin-top: var(--s-1); }
 .compact-item .c-chip { font-size: 10.5px; font-weight: 700; color: #6F6356; text-transform: uppercase; letter-spacing: .06em; }
 
 /* ==========================================================================
    4) BÉRLETEIM — fókusz: HÁNY ALKALOM VAN HÁTRA
    ========================================================================== */
 
-.pass-focus { position: relative; border-radius: 24px; overflow: hidden; padding: 44px 38px; margin-bottom: 24px; background: linear-gradient(155deg, #2A2118 0%, #1B1713 60%); border: 1px solid rgba(249, 115, 22, .34); box-shadow: var(--focus-ring); }
+.pass-focus { position: relative; border-radius: 24px; overflow: hidden; padding: var(--s-6) var(--s-5); margin-bottom: var(--s-4); background: linear-gradient(155deg, #2A2118 0%, #1B1713 60%); border: 1px solid rgba(249, 115, 22, .34); box-shadow: var(--focus-ring); }
 .pass-focus::before {
-  content: ""; position: absolute; top: -80px; right: -60px; width: 340px; height: 340px; border-radius: 50%;
+  content: ""; position: absolute; top: -80px; right: -64px; width: 344px; height: 344px; border-radius: 50%;
   background: radial-gradient(circle, rgba(249, 115, 22, .18), transparent 68%);
   pointer-events: none;
 }
 .pass-focus-inner { position: relative; z-index: 2; }
-.pass-focus .pf-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .16em; font-weight: 800; color: #8B7F71; margin: 0 0 4px; }
-.pass-focus .pf-name { font-size: 15px; font-weight: 600; color: #B8AC9D; margin: 0 0 22px; }
+/* Csoport: felirat → bérlet neve */
+.pass-focus .pf-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .16em; font-weight: 800; color: #8B7F71; margin: 0 0 var(--s-1); }
+.pass-focus .pf-name { font-size: 15px; font-weight: 600; color: #B8AC9D; margin: 0 0 var(--s-4); }
 
-/* ⭐ A SZÁM */
-.pf-number { display: flex; align-items: flex-end; gap: 14px; margin: 0 0 6px; }
-.pf-number .n { font-size: clamp(72px, 14vw, 118px); line-height: .82; font-weight: 800; color: #fff; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
-.pf-number .u { font-size: 15px; color: #B8AC9D; font-weight: 600; padding-bottom: 10px; max-width: 110px; line-height: 1.3; }
+/* ⭐ A SZÁM — saját csoport */
+.pf-number { display: flex; align-items: flex-end; gap: var(--s-2); margin: 0; }
+.pf-number .n { font-size: clamp(72px, 14vw, 120px); line-height: .8; font-weight: 800; color: #fff; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+.pf-number .u { font-size: 15px; color: #B8AC9D; font-weight: 600; padding-bottom: var(--s-1); max-width: 112px; line-height: 1.3; }
 .pf-number .u b { display: block; color: var(--brand-2); font-weight: 800; }
-.pf-bar { height: 6px; background: rgba(255, 255, 255, .08); border-radius: 999px; overflow: hidden; margin: 22px 0 10px; max-width: 460px; }
+.pf-bar { height: 8px; background: rgba(255, 255, 255, .08); border-radius: 999px; overflow: hidden; margin: var(--s-4) 0 var(--s-2); max-width: 480px; }
 .pf-bar .fill { height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand-2)); border-radius: 999px; }
-.pf-meta { display: flex; gap: 26px; flex-wrap: wrap; font-size: 12.5px; color: #7E7264; margin: 0; }
+.pf-meta { display: flex; gap: var(--s-4); flex-wrap: wrap; font-size: 12.5px; color: #7E7264; margin: 0; }
 .pf-meta b { color: #B8AC9D; font-weight: 700; }
-.pf-state { display: inline-flex; margin-bottom: 18px; }
 
 /* Másodlagos: előzmények + vásárlás */
-.pass-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.pass-secondary .card { opacity: .85; }
+.pass-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }
+.pass-secondary .card { opacity: .85; padding: var(--s-4); }
 .history-list { list-style: none; margin: 0; padding: 0; }
-.history-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(44, 38, 32, .5); font-size: 13px; color: #8B7F71; }
+.history-list li { display: flex; justify-content: space-between; gap: var(--s-2); padding: var(--s-2) 0; border-bottom: 1px solid rgba(44, 38, 32, .5); font-size: 13px; color: #8B7F71; }
 .history-list li:last-child { border-bottom: 0; }
 .history-list li span:last-child { color: #5E544A; font-variant-numeric: tabular-nums; }
 
-.buy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.buy-card { display: flex; flex-direction: column; gap: 6px; opacity: .9; transition: opacity .15s ease, border-color .15s ease; }
+.buy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+.buy-card { display: flex; flex-direction: column; gap: var(--s-2); opacity: .9; transition: opacity .15s ease, border-color .15s ease; padding: var(--s-3); }
 .buy-card:hover { opacity: 1; border-color: #45392E; }
 .buy-card h3 { font-size: 15px; font-weight: 700; margin: 0; color: #D5C9BA; }
 .buy-card .price { font-size: 21px; font-weight: 800; color: #B8AC9D; margin: 0; }
 .buy-card .price small { font-size: 12px; color: #6F6356; font-weight: 600; }
-.buy-card p { color: #6F6356; font-size: 12.5px; margin: 0 0 4px; flex: 1; }
-.buy-card .btn { opacity: .8; }
+.buy-card p { color: #6F6356; font-size: 12.5px; margin: 0; flex: 1; }
+.buy-card .btn { opacity: .8; margin-top: var(--s-1); }
 .buy-card:hover .btn { opacity: 1; }
 
 /* ==========================================================================
    Közös: chipek, modál, toast, űrlap
    ========================================================================== */
 
-.chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; border-radius: 999px; font-size: 11.5px; font-weight: 700; border: 0; }
+.chip { display: inline-flex; align-items: center; gap: var(--s-1); padding: var(--s-1) var(--s-2); border-radius: 999px; font-size: 11.5px; font-weight: 700; border: 0; }
 .chip-green { background: rgba(43, 147, 72, .18); color: #8FD6A3; }
 .chip-orange { background: var(--brand-soft); color: var(--brand-2); }
 .chip-gray { background: rgba(255, 255, 255, .07); color: #8B7F71; }
@@ -364,41 +375,41 @@
 .btn-block { width: 100%; }
 .btn[disabled] { opacity: .55; cursor: not-allowed; box-shadow: none; }
 .btn[disabled]:hover { transform: none; }
-.confirm-text { color: var(--muted); font-size: 15px; margin-bottom: 20px; white-space: pre-line; }
-.modal-meta-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 14px; }
+.confirm-text { color: var(--muted); font-size: 15px; margin: 0 0 var(--s-4); white-space: pre-line; }
+.modal-meta-row { display: flex; justify-content: space-between; align-items: center; gap: var(--s-2); margin: 0 0 var(--s-3); }
 
-/* Vásárlások / számlák (másodlagos oldalak) */
-.purchase-row { display: flex; align-items: center; gap: 14px; padding: 15px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+/* Vásárlások / számlák */
+.purchase-row { display: flex; align-items: center; gap: var(--s-3); padding: var(--s-2) var(--s-3); border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
 .purchase-row .p-info { flex: 1; }
 .purchase-row .p-t { font-weight: 700; font-size: 15px; }
-.purchase-row .p-s { color: var(--muted); font-size: 13px; }
+.purchase-row .p-s { color: var(--muted); font-size: 13px; margin-top: var(--s-1); }
 .purchase-row .p-amount { font-weight: 800; font-size: 15px; }
-.booking-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.booking-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--s-2); }
 
 .invoice { font-size: 14px; }
-.invoice .inv-head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.invoice .inv-head { display: flex; justify-content: space-between; gap: var(--s-2); margin-bottom: var(--s-3); }
 .invoice .inv-head h3 { font-size: 18px; margin: 0; }
 .invoice .inv-rows { border-top: 1px solid var(--line); }
-.invoice .inv-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
-.invoice .inv-total { display: flex; justify-content: space-between; font-weight: 800; padding-top: 12px; font-size: 16px; }
-.invoice .demo-stamp { margin-top: 16px; text-align: center; color: var(--muted); font-size: 12.5px; border: 1px dashed var(--line); border-radius: 8px; padding: 8px; }
+.invoice .inv-row { display: flex; justify-content: space-between; padding: var(--s-2) 0; border-bottom: 1px solid var(--line); color: var(--muted); }
+.invoice .inv-total { display: flex; justify-content: space-between; font-weight: 800; padding-top: var(--s-2); font-size: 16px; }
+.invoice .demo-stamp { margin-top: var(--s-3); text-align: center; color: var(--muted); font-size: 12.5px; border: 1px dashed var(--line); border-radius: 8px; padding: var(--s-2); }
 
 /* Profil */
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }
+.form-field { display: flex; flex-direction: column; gap: var(--s-1); }
 .form-field label { font-size: 12.5px; font-weight: 600; color: var(--muted); }
-.form-field input { padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; font-size: 15px; font-family: inherit; background: var(--surface-2); color: var(--ink); }
+.form-field input { padding: var(--s-2) var(--s-3); border: 1px solid var(--line); border-radius: 12px; font-size: 15px; font-family: inherit; background: var(--surface-2); color: var(--ink); }
 .form-field input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-soft); }
 .form-full { grid-column: 1 / -1; }
-.profile-section { margin-bottom: 22px; }
-.profile-section h2 { font-size: 15px; font-weight: 700; margin-bottom: 14px; color: #D5C9BA; }
-.page-note { color: #6F6356; font-size: 12.5px; margin-top: 14px; }
+.profile-section { margin-bottom: var(--s-3); }
+.profile-section h2 { font-size: 15px; font-weight: 700; margin: 0 0 var(--s-3); color: #D5C9BA; }
+.page-note { color: #6F6356; font-size: 12.5px; margin: var(--s-3) 0 0; }
 
 /* Toast */
 .toast {
-  position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%);
+  position: fixed; left: 50%; bottom: 88px; transform: translateX(-50%);
   background: #F2ECE4; color: #171310;
-  padding: 13px 22px; border-radius: 999px; font-size: 14.5px; font-weight: 700;
+  padding: var(--s-2) var(--s-3); border-radius: 999px; font-size: 14.5px; font-weight: 700;
   box-shadow: 0 14px 40px rgba(0, 0, 0, .55); z-index: 120;
   animation: toastIn .25s ease;
 }
@@ -409,29 +420,29 @@
    Reszponzív
    ========================================================================== */
 @media (min-width: 901px) {
-  .dash-layout { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; }
+  .dash-layout { display: grid; grid-template-columns: 1fr 304px; gap: var(--s-4); align-items: start; }
 }
 
 @media (max-width: 900px) {
   .buy-grid { grid-template-columns: 1fr; }
   .pass-secondary { grid-template-columns: 1fr; }
   .res-hero { flex-direction: column; }
-  .res-hero-media { width: 100%; height: 150px; }
+  .res-hero-media { width: 100%; height: 152px; }
 }
 
 @media (max-width: 760px) {
   .app-nav { display: none; }
   .user-name { display: none; }
   .bottom-nav { display: grid; }
-  body { padding-bottom: 64px; }
+  body { padding-bottom: var(--s-8); }
   .form-grid { grid-template-columns: 1fr; }
-  .page { padding-top: 22px; }
-  .next-hero-body { padding: 26px 20px; }
-  .pass-focus { padding: 30px 22px; }
-  .pf-number .n { font-size: 84px; }
-  .day-detail { padding: 18px; }
-  .class-row { gap: 12px; padding: 13px 14px; }
-  .class-row .cr-time { min-width: 78px; font-size: 15px; }
+  .page { padding-top: var(--s-3); }
+  .next-hero-body { padding: var(--s-4) var(--s-3); }
+  .pass-focus { padding: var(--s-5) var(--s-3); }
+  .pf-number .n { font-size: 88px; }
+  .day-detail { padding: var(--s-3); }
+  .class-row { gap: var(--s-2); padding: var(--s-2); }
+  .class-row .cr-time { min-width: 80px; font-size: 15px; }
   .class-row .cr-name { font-size: 14.5px; }
   .cal-cell { min-height: 96px; }
 }
