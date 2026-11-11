@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>aTerem — Órarend és foglalás</title>
+  <meta name="description" content="Órarend — válassz órát és foglalj.">
+  <meta name="theme-color" content="#100D0B">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23F97316'/%3E%3Ctext x='50' y='66' font-size='44' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'%3EaT%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/client.css">
+</head>
+<body data-page="oraend">
+
+  <header id="siteHeader"></header>
+
+  <main class="container page">
+    <p class="page-title">Órarend és foglalás</p>
+
+    <!-- ⭐ FÓKUSZ: a naptár -->
+    <div class="cal-toolbar">
+      <h1 class="month-label" id="monthLabel"></h1>
+      <div class="calendar-controls">
+        <button id="prevMonth" class="btn btn-icon" aria-label="Előző hónap">&lsaquo;</button>
+        <button id="nextMonth" class="btn btn-icon" aria-label="Következő hónap">&rsaquo;</button>
+        <button id="todayBtn" class="btn btn-outline btn-sm">Ma</button>
+      </div>
+    </div>
+
+    <div class="filter-row" id="filterChips"></div>
+
+    <div class="calendar-grid cal-focus" id="calendarGrid"></div>
+
+    <div class="calendar-mobile" id="calendarMobile">
+      <div class="day-selector" id="daySelector"></div>
+      <ul class="day-list" id="dayList"></ul>
+    </div>
+
+    <div class="day-detail" id="dayDetail" hidden>
+      <h3 class="day-detail-title" id="dayDetailTitle"></h3>
+      <ul class="day-detail-list" id="dayDetailList"></ul>
+    </div>
+
+    <p class="page-note">Minta órarend — az időpontok illusztrációk, a végleges órarend feltöltése folyamatban.</p>
+  </main>
+
+  <nav id="bottomNav"></nav>
+  <footer id="siteFooter"></footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

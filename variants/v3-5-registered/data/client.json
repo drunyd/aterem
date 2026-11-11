@@ -1,0 +1,56 @@
+{
+  "user": {
+    "id": "u1",
+    "firstName": "Anna",
+    "lastName": "Kovács",
+    "email": "anna@example.com",
+    "phone": "+36 30 123 4567",
+    "billingName": "Kovács Anna",
+    "billingAddress": "8000 Székesfehérvár, Minta utca 1."
+  },
+  "pass": {
+    "id": "pass1",
+    "name": "10 alkalmas bérlet",
+    "total": 10,
+    "used": 4,
+    "validUntil": "2026-12-15",
+    "status": "aktív",
+    "history": [
+      { "date": "2026-10-26", "label": "Köredzés — felhasználva" },
+      { "date": "2026-10-27", "label": "Nyújtás — felhasználva" },
+      { "date": "2026-10-29", "label": "Gerinctorna — felhasználva" },
+      { "date": "2026-10-30", "label": "Köredzés + nyújtás — felhasználva" }
+    ]
+  },
+  "bookings": [
+    { "id": "b1", "eventId": "e03", "classTypeId": "gerinctorna", "date": "2026-11-03", "start": "09:00", "end": "10:00", "status": "upcoming", "bookedAt": "2026-10-28 14:20" },
+    { "id": "b2", "eventId": "e05", "classTypeId": "has-far-comb", "date": "2026-11-04", "start": "17:00", "end": "18:00", "status": "upcoming", "bookedAt": "2026-10-30 09:05" },
+    { "id": "b3", "eventId": "e07", "classTypeId": "trambulin", "date": "2026-11-05", "start": "18:30", "end": "19:30", "status": "upcoming", "bookedAt": "2026-11-01 18:40" },
+    { "id": "p1", "eventId": null, "classTypeId": "koredzes", "date": "2026-10-26", "start": "17:00", "end": "18:00", "status": "past", "bookedAt": "2026-10-20 10:00" },
+    { "id": "p2", "eventId": null, "classTypeId": "nyujtas", "date": "2026-10-27", "start": "19:00", "end": "20:00", "status": "past", "bookedAt": "2026-10-21 11:00" },
+    { "id": "p3", "eventId": null, "classTypeId": "gerinctorna", "date": "2026-10-29", "start": "09:00", "end": "10:00", "status": "past", "bookedAt": "2026-10-22 08:30" },
+    { "id": "p4", "eventId": null, "classTypeId": "koredzes-nyujtas", "date": "2026-10-30", "start": "17:00", "end": "18:00", "status": "past", "bookedAt": "2026-10-24 12:00" },
+    { "id": "c1", "eventId": null, "classTypeId": "trx", "date": "2026-10-31", "start": "17:30", "end": "18:30", "status": "cancelled", "bookedAt": "2026-10-25 09:00" }
+  ],
+  "purchases": [
+    { "id": "pur1", "date": "2026-10-20", "product": "10 alkalmas bérlet", "amount": 25000, "currency": "Ft", "paymentStatus": "fizetve", "invoiceId": "inv1" },
+    { "id": "pur2", "date": "2026-11-01", "product": "Napijegy — Köredzés", "amount": 2500, "currency": "Ft", "paymentStatus": "fizetve", "invoiceId": "inv2" }
+  ],
+  "invoices": [
+    { "id": "inv1", "number": "AT-2026-001", "date": "2026-10-20", "amount": 25000, "product": "10 alkalmas bérlet" },
+    { "id": "inv2", "number": "AT-2026-002", "date": "2026-11-01", "amount": 2500, "product": "Napijegy — Köredzés" }
+  ],
+  "notifications": [
+    { "id": "n1", "text": "Már csak 2 alkalom maradt a bérletedből.", "date": "2026-11-01", "read": false },
+    { "id": "n2", "text": "Holnap 09:00-kor Gerinctorna edzésed lesz.", "date": "2026-11-02", "read": false },
+    { "id": "n3", "text": "Felszabadult egy hely a várólistás órán.", "date": "2026-10-31", "read": true },
+    { "id": "n4", "text": "A bérleted 2026. december 15-én jár le.", "date": "2026-10-29", "read": true }
+  ],
+  "config": {
+    "cancellationDeadlineHours": 6,
+    "demoToday": "2026-11-02",
+    "demoNow": "2026-11-02T12:00:00",
+    "pricesAreDemo": true,
+    "prices": { "dailyTicket": 2500, "monthlyPass": 18000, "tenPass": 25000 }
+  }
+}

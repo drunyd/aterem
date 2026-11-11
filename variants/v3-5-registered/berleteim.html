@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>aTerem — Bérleteim</title>
+  <meta name="description" content="Hátralévő alkalmak és bérletvásárlás.">
+  <meta name="theme-color" content="#100D0B">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23F97316'/%3E%3Ctext x='50' y='66' font-size='44' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'%3EaT%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/client.css">
+</head>
+<body data-page="berleteim">
+
+  <header id="siteHeader"></header>
+
+  <main class="container page">
+    <p class="page-title">Bérleteim</p>
+
+    <!-- ⭐ FÓKUSZ: hány alkalom van hátra -->
+    <div class="pass-focus" id="passCard"></div>
+
+    <!-- Másodlagos -->
+    <div class="pass-secondary">
+      <div class="card">
+        <p class="quiet-title">Vásárlás</p>
+        <div class="buy-grid" id="buyGrid" style="grid-template-columns:1fr"></div>
+        <p class="page-note">Az árak demóárak — a végleges árak feltöltése folyamatban.</p>
+      </div>
+      <div class="card">
+        <p class="quiet-title">Felhasználási előzmények</p>
+        <ul class="history-list" id="historyList"></ul>
+      </div>
+    </div>
+  </main>
+
+  <nav id="bottomNav"></nav>
+  <footer id="siteFooter"></footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

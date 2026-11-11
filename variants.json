@@ -27,6 +27,13 @@
       "description": "Bejelentkezett ügyfélfelület sötét témában, képekkel: dashboard banner, foglalás, bérlet, vásárlások, profil, értesítések.",
       "path": "variants/v2-5-registered/",
       "status": "aktív"
+    },
+    {
+      "id": "v3-5-registered",
+      "name": "Változat 3.5 — sötét — regisztrált — finomhangolt",
+      "description": "Fókusz-hierarchia minden oldalon: a következő edzés, a naptár és az órák, a közelgő foglalások, illetve a hátralévő alkalmak a főszereplő — minden más visszafogott.",
+      "path": "variants/v3-5-registered/",
+      "status": "aktív"
     }
   ]
 }

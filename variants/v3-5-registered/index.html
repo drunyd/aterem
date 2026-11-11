@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>aTerem — Áttekintés</title>
+  <meta name="description" content="A következő edzésed és a bérleted egy helyen.">
+  <meta name="theme-color" content="#100D0B">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23F97316'/%3E%3Ctext x='50' y='66' font-size='44' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'%3EaT%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/client.css">
+</head>
+<body data-page="dashboard">
+
+  <header id="siteHeader"></header>
+
+  <main class="container page">
+    <p class="page-title">Áttekintés</p>
+    <div class="dash-intro">
+      <p class="dash-name">Szia, <b id="greeting">Anna</b>! Örülünk, hogy újra itt vagy.</p>
+    </div>
+
+    <!-- ⭐ FÓKUSZ: a következő edzés -->
+    <div id="nextTraining"></div>
+
+    <div class="dash-layout">
+      <div>
+        <div class="quiet-block" style="margin-top:0">
+          <p class="quiet-title">Következő 7 nap</p>
+          <ul class="week-list" id="upcomingList"></ul>
+        </div>
+
+        <div class="quiet-block">
+          <p class="quiet-title">Gyors műveletek</p>
+          <div class="quiet-actions">
+            <a href="oraend.html">Új foglalás</a>
+            <a href="berleteim.html">Bérlet vásárlása</a>
+            <a href="foglalasaim.html">Foglalásaim</a>
+            <a href="vasarlasaim.html">Számláim</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-side">
+        <!-- Bérlet — visszafogott -->
+        <div class="card mini-pass" id="passOverview"></div>
+      </div>
+    </div>
+  </main>
+
+  <nav id="bottomNav"></nav>
+  <footer id="siteFooter"></footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
