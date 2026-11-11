@@ -41,6 +41,11 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+  // 2500 -> "2 500" (magyar ezres tagolás)
+  function ft(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0");
+  }
+
   function fmtDayLong(iso) {
     var p = parseIso(iso); var dt = new Date(p.y, p.m, p.d);
     return MONTHS[p.m] + " " + p.d + "., " + WEEKDAYS_FULL[dt.getDay()];
@@ -128,7 +133,7 @@
         '<header class="site-header app-header">' +
           '<div class="container header-inner">' +
             '<a class="brand" href="index.html">aTerem<span style="color:var(--brand)">.</span></a>' +
-            '<nav class="nav app-nav" aria-label="Fő navigáció">' + navHtml + "</nav>" +
+            '<nav class="nav app-nav" id="nav" aria-label="Fő navigáció">' + navHtml + "</nav>" +
             '<div class="header-actions">' +
               '<div style="position:relative">' +
                 '<button class="bell" id="bellBtn" aria-label="Értesítések">' + ICONS.bell +
@@ -137,6 +142,8 @@
               '<div class="user-chip"><span class="avatar" id="avatar">A</span>' +
                 '<span class="user-name" id="headerUserName">Anna</span></div>' +
               '<button class="btn btn-outline btn-sm" id="logoutBtn">Kijelentkezés</button>' +
+              '<button class="nav-toggle" id="navToggle" aria-label="Menü" aria-expanded="false" aria-controls="nav">' +
+                "<span></span><span></span><span></span></button>" +
             "</div>" +
           "</div>" +
           '<div class="notif-panel" id="notifPanel" hidden></div>' +
@@ -181,6 +188,27 @@
     }
 
     // wire common
+    var navToggle = $("#navToggle"), navEl = $("#nav");
+    if (navToggle && navEl) {
+      navToggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var open = navEl.classList.toggle("is-open");
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      document.addEventListener("click", function (e) {
+        if (!navEl.classList.contains("is-open")) return;
+        if (e.target.closest("#nav") || e.target.closest("#navToggle")) return;
+        navEl.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && navEl.classList.contains("is-open")) {
+          navEl.classList.remove("is-open");
+          navToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+
     var bell = $("#bellBtn");
     if (bell) bell.addEventListener("click", function (e) { e.stopPropagation(); toggleNotifPanel(); });
     document.addEventListener("click", function (e) {
@@ -298,7 +326,7 @@
           '<p class="lbl">Bérlet</p>' +
           '<p class="val">' + left + " <small>alkalom</small></p>" +
           '<div class="progress"><div class="fill" style="width:' + pct + '%"></div></div>' +
-          '<div class="progress-labels"><span>' + used + "/" + p.total + " felhasználva</span><span>" + esc(p.validUntil) + "</span></div>" +
+          '<div class="progress-labels"><span>' + used + "/" + p.total + " felhasználva</span><span>érv. " + esc(p.validUntil) + "</span></div>" +
           '<a class="link-quiet" href="berleteim.html">Bérletek megtekintése &rarr;</a>';
       } else {
         passEl.innerHTML =
@@ -697,7 +725,7 @@
       buy.innerHTML = options.map(function (o) {
         return '<div class="card buy-card">' +
           "<h3>" + esc(o.name) + "</h3>" +
-          '<p class="price">' + o.price.toLocaleString("hu-HU") + ' <small>Ft</small></p>' +
+          '<p class="price">' + ft(o.price) + ' <small>Ft</small></p>' +
           "<p>" + esc(o.desc) + "</p>" +
           '<button class="btn btn-outline btn-sm" data-buy="' + esc(o.name) + '|' + o.price + '">Vásárlás</button></div>';
       }).join("");
@@ -705,7 +733,7 @@
         btn.addEventListener("click", function () {
           var parts = btn.getAttribute("data-buy").split("|");
           var name = parts[0], price = parseInt(parts[1], 10);
-          confirmDialog("Demó vásárlás", name + " — " + price.toLocaleString("hu-HU") + " Ft.\n\nEz egy szimulált vásárlás, valódi fizetés nem történik.", "Vásárlás", function () {
+          confirmDialog("Demó vásárlás", name + " — " + ft(price) + " Ft.\n\nEz egy szimulált vásárlás, valódi fizetés nem történik.", "Vásárlás", function () {
             state.purchases.unshift({ id: "pur" + Date.now(), date: state.config.demoToday, product: name, amount: price, currency: "Ft", paymentStatus: "fizetve", invoiceId: "inv" + Date.now() });
             state.invoices.unshift({ id: "inv" + Date.now(), number: "AT-2026-" + String(100 + Math.floor(Math.random() * 899)), date: state.config.demoToday, amount: price, product: name });
             saveState();
@@ -726,7 +754,7 @@
       return '<li class="purchase-row">' +
         '<div class="p-info"><div class="p-t">' + esc(p.product) + "</div>" +
         '<div class="p-s">' + esc(p.date) + " · " + esc(p.paymentStatus) + "</div></div>" +
-        '<span class="p-amount">' + p.amount.toLocaleString("hu-HU") + " " + esc(p.currency) + "</span>" +
+        '<span class="p-amount">' + ft(p.amount) + " " + esc(p.currency) + "</span>" +
         '<button class="btn btn-outline btn-sm" data-invoice="' + p.invoiceId + '">Számla</button></li>';
     }).join("");
     $$("[data-invoice]", list).forEach(function (btn) {
@@ -746,7 +774,7 @@
           '<div class="inv-row"><span>' + esc(inv.product) + "</span><span>1 db</span></div>" +
           '<div class="inv-row"><span>Áfa</span><span>—</span></div>' +
         "</div>" +
-        '<div class="inv-total"><span>Összesen</span><span>' + inv.amount.toLocaleString("hu-HU") + " Ft</span></div>" +
+        '<div class="inv-total"><span>Összesen</span><span>' + ft(inv.amount) + " Ft</span></div>" +
         '<div class="demo-stamp">Demó számla — nincs valódi bizonylat.</div>' +
       "</div>"
     );

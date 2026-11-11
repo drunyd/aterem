@@ -99,7 +99,16 @@
    FÓKUSZ RENDSZER
    ========================================================================== */
 
-.page { padding: var(--s-5) 0 96px; }
+.page { padding-top: var(--s-5); padding-bottom: 96px; }
+
+/* A lábléc mindig az oldal aljára kerül (nagy kijelzőn sem lóg a levegőben) */
+body { min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1 0 auto; }
+
+/* Alap progress bar (a mini bérletkártyához) */
+.progress { height: 8px; background: rgba(255, 255, 255, .08); border-radius: 999px; overflow: hidden; }
+.progress .fill { height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand-2)); border-radius: 999px; }
+.progress-labels { display: flex; justify-content: space-between; gap: var(--s-2); font-size: 11.5px; color: #7E7264; font-variant-numeric: tabular-nums; }
 
 /* Oldalcím — visszafogott, hogy a tartalom beszéljen */
 .page-title { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #6F6356; margin: 0 0 var(--s-3); }
@@ -188,7 +197,7 @@
 /* Eszköztár: hónap + navigáció egy sor */
 .cal-toolbar { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; margin-bottom: var(--s-3); }
 .calendar-controls { display: flex; align-items: center; gap: var(--s-2); }
-.month-label { font-size: 20px; font-weight: 800; letter-spacing: -.01em; text-transform: capitalize; min-width: 0; text-align: left; margin: 0; }
+.month-label { font-size: 20px; font-weight: 800; letter-spacing: -.01em; min-width: 0; text-align: left; margin: 0; }
 .cal-toolbar .btn-icon { width: 40px; height: 40px; font-size: 19px; opacity: .7; }
 .cal-toolbar .btn-icon:hover { opacity: 1; }
 .cal-toolbar .btn-outline { opacity: .75; }
@@ -333,9 +342,9 @@
 .pass-focus .pf-name { font-size: 15px; font-weight: 600; color: #B8AC9D; margin: 0 0 var(--s-4); }
 
 /* ⭐ A SZÁM — saját csoport */
-.pf-number { display: flex; align-items: flex-end; gap: var(--s-2); margin: 0; }
+.pf-number { display: flex; align-items: baseline; gap: var(--s-2); margin: 0; }
 .pf-number .n { font-size: clamp(72px, 14vw, 120px); line-height: .8; font-weight: 800; color: #fff; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
-.pf-number .u { font-size: 15px; color: #B8AC9D; font-weight: 600; padding-bottom: var(--s-1); max-width: 112px; line-height: 1.3; }
+.pf-number .u { font-size: 15px; color: #B8AC9D; font-weight: 600; padding-bottom: 0; max-width: 112px; line-height: 1.25; }
 .pf-number .u b { display: block; color: var(--brand-2); font-weight: 800; }
 .pf-bar { height: 8px; background: rgba(255, 255, 255, .08); border-radius: 999px; overflow: hidden; margin: var(--s-4) 0 var(--s-2); max-width: 480px; }
 .pf-bar .fill { height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand-2)); border-radius: 999px; }
@@ -357,7 +366,7 @@
 .buy-card .price { font-size: 21px; font-weight: 800; color: #B8AC9D; margin: 0; }
 .buy-card .price small { font-size: 12px; color: #6F6356; font-weight: 600; }
 .buy-card p { color: #6F6356; font-size: 12.5px; margin: 0; flex: 1; }
-.buy-card .btn { opacity: .8; margin-top: var(--s-1); }
+.buy-card .btn { align-self: flex-start; opacity: .8; margin-top: var(--s-1); }
 .buy-card:hover .btn { opacity: 1; }
 
 /* ==========================================================================
@@ -419,25 +428,41 @@
 /* ==========================================================================
    Reszponzív
    ========================================================================== */
-@media (min-width: 901px) {
+
+/* Nagy monitor: a dashboard két oszlopa már kényelmesen elfér */
+@media (min-width: 1024px) {
   .dash-layout { display: grid; grid-template-columns: 1fr 304px; gap: var(--s-4); align-items: start; }
+}
+
+/* Ultra-széles (4K): egy fokkal nagyobb belső ritmus */
+@media (min-width: 1700px) {
+  .dash-layout { grid-template-columns: 1fr 344px; gap: var(--s-5); }
+  .next-hero-body { padding: var(--s-6) var(--s-6); }
+  .pass-focus { padding: 56px var(--s-7); }
+}
+
+/* Tablet / félig kicsinyített böngésző (kb. 800px): hamburger menü */
+@media (max-width: 1080px) {
+  .user-name { display: none; }
+  #logoutBtn { padding: 8px 16px; font-size: 13.5px; }
+  .header-actions { gap: var(--s-1); }
 }
 
 @media (max-width: 900px) {
   .buy-grid { grid-template-columns: 1fr; }
   .pass-secondary { grid-template-columns: 1fr; }
   .res-hero { flex-direction: column; }
-  .res-hero-media { width: 100%; height: 152px; }
+  .res-hero-media { width: 100%; height: 160px; }
+  .res-hero-body { padding: var(--s-3); }
 }
 
 @media (max-width: 760px) {
-  .app-nav { display: none; }
-  .user-name { display: none; }
   .bottom-nav { display: grid; }
   body { padding-bottom: var(--s-8); }
+  .page { padding-top: var(--s-3); padding-bottom: var(--s-6); }
   .form-grid { grid-template-columns: 1fr; }
-  .page { padding-top: var(--s-3); }
   .next-hero-body { padding: var(--s-4) var(--s-3); }
+  .next-hero.is-empty .next-hero-body { padding: var(--s-5) var(--s-3); }
   .pass-focus { padding: var(--s-5) var(--s-3); }
   .pf-number .n { font-size: 88px; }
   .day-detail { padding: var(--s-3); }
@@ -445,8 +470,14 @@
   .class-row .cr-time { min-width: 80px; font-size: 15px; }
   .class-row .cr-name { font-size: 14.5px; }
   .cal-cell { min-height: 96px; }
+  .cal-toolbar { gap: var(--s-2); }
+  .month-label { font-size: 18px; }
+  .day-selector { margin-left: calc(var(--s-3) * -1); margin-right: calc(var(--s-3) * -1); padding-left: var(--s-3); padding-right: var(--s-3); }
+  .pass-secondary .card { padding: var(--s-3); }
 }
 
 @media (max-width: 420px) {
   .cal-event .ev-name { display: none; }
+  .pf-number .n { font-size: 76px; }
+  .next-title { font-size: 28px; }
 }

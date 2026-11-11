@@ -37,6 +37,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 img { max-width: 100%; display: block; }
@@ -47,6 +48,17 @@ p { margin: 0 0 1em; }
 a { color: var(--brand-2); }
 
 .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+/* Nagy képernyők (FullHD / 4K): szélesebb tartalom, nagyobb oldalmargó */
+@media (min-width: 1700px) {
+  :root { --container: 1400px; }
+  .container { padding: 0 40px; }
+}
+
+@media (min-width: 2600px) {
+  :root { --container: 1760px; }
+  .container { padding: 0 64px; }
+}
 
 /* ---- Buttons (with shine) --------------------------------------------- */
 .btn {
@@ -115,12 +127,12 @@ a { color: var(--brand-2); }
   border-bottom: 1px solid var(--line);
 }
 
-.header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; min-width: 0; }
 
 .brand { font-size: 22px; font-weight: 800; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
 .brand span { color: var(--brand); }
 
-.nav { display: flex; gap: 4px; }
+.nav { display: flex; gap: 2px; min-width: 0; }
 .nav a {
   position: relative;
   color: var(--muted);
@@ -441,16 +453,28 @@ a { color: var(--brand-2); }
   .contact-grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1080px) {
+  /* A 6 menüpont nem fér el — hamburger menü */
   .nav-toggle { display: flex; }
   .nav {
-    position: absolute; top: 66px; left: 0; right: 0;
-    flex-direction: column; background: var(--bg);
+    position: absolute; top: 64px; left: 0; right: 0;
+    flex-direction: column; background: #16120F;
     border-bottom: 1px solid var(--line);
-    padding: 12px 20px 20px; gap: 4px; display: none;
+    padding: 8px 16px 16px; gap: 2px; display: none;
+    box-shadow: var(--shadow-md);
   }
   .nav.is-open { display: flex; }
-  .nav a { padding: 12px 14px; font-size: 16px; }
+  .nav a {
+    padding: 12px 16px; font-size: 16px; border-radius: 8px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .nav a[aria-current="page"]::after { display: none; }
+}
+
+@media (max-width: 760px) {
+  .container { padding: 0 16px; }
+  .nav { padding: 8px 16px 16px; }
+  .nav a { padding: 12px 16px; font-size: 16px; }
 
   .calendar-grid, .day-detail { display: none; }
   .calendar-mobile { display: block; }
